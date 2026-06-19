@@ -1,0 +1,96 @@
+:root {
+  --navy: #1a2a4f;
+  --blue: #2f6fed;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --border: #e1e6ef;
+  --text: #1f2733;
+  --muted: #6b7686;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--navy);
+  color: #fff;
+  padding: 28px 20px;
+  text-align: center;
+}
+header h1 { margin: 0; font-size: 1.6rem; }
+.subtitle { margin: 6px 0 0; color: #b9c4dc; font-size: 0.95rem; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 16px 0;
+  flex-wrap: wrap;
+}
+.tab {
+  flex: 1 1 auto;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: #eef1f7;
+  color: var(--muted);
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.tab.active { background: var(--card); color: var(--blue); font-weight: 600; }
+
+main { max-width: 760px; margin: 0 auto; padding: 0 16px 32px; }
+
+.panel { display: none; background: var(--card); border: 1px solid var(--border); border-radius: 0 0 12px 12px; padding: 22px; }
+.panel.active { display: block; }
+.panel h2 { margin-top: 0; color: var(--navy); }
+.hint { color: var(--muted); font-size: 0.9rem; margin-top: -6px; }
+
+input[type="text"], textarea, input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+textarea { resize: vertical; }
+
+.run {
+  margin-top: 8px;
+  padding: 11px 20px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.run:hover { background: #1f5bd6; }
+.run:disabled { background: #9bb4e8; cursor: not-allowed; }
+
+.result {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  min-height: 1em;
+}
+.result:empty { display: none; }
+
+footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 0 16px 28px; }

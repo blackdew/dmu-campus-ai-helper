@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>동명대 AI 프로젝트 도우미</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎓 동명대 AI 프로젝트 도우미</h1>
+    <p class="subtitle">캠퍼스 협업·학습을 돕는 자체 생성형 AI 데모</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="summarize">강의자료 요약</button>
+    <button class="tab" data-tab="project">프로젝트 도우미</button>
+    <button class="tab" data-tab="planner">스터디 플래너</button>
+    <button class="tab" data-tab="search">자료 검색</button>
+  </nav>
+
+  <main>
+    <!-- 강의자료 요약 -->
+    <section class="panel active" id="summarize">
+      <h2>강의자료 요약</h2>
+      <p class="hint">PDF를 올리거나 텍스트를 붙여넣으면 요약·퀴즈·핵심 포인트를 만들어줍니다.</p>
+      <input type="file" id="summarize-file" accept="application/pdf" />
+      <textarea id="summarize-text" rows="6" placeholder="또는 강의 내용을 여기에 붙여넣으세요"></textarea>
+      <button class="run" data-endpoint="summarize">요약 생성</button>
+      <pre class="result" id="summarize-result"></pre>
+    </section>
+
+    <!-- 프로젝트 도우미 -->
+    <section class="panel" id="project">
+      <h2>캠퍼스 프로젝트 도우미</h2>
+      <p class="hint">팀원·할 일·마감을 입력하면 역할 배분과 일정을 추천합니다.</p>
+      <input type="text" id="project-members" placeholder="팀원 (예: 강민혜, 김민지)" />
+      <textarea id="project-tasks" rows="4" placeholder="할 일/과제 (예: 보고서 작성, 발표자료, 코드 구현)"></textarea>
+      <input type="text" id="project-deadline" placeholder="마감일 (예: 6/30)" />
+      <button class="run" data-endpoint="project">추천 받기</button>
+      <pre class="result" id="project-result"></pre>
+    </section>
+
+    <!-- 스터디 플래너 -->
+    <section class="panel" id="planner">
+      <h2>스터디 플래너</h2>
+      <p class="hint">시험 일정과 시간표를 입력하면 학습 스케줄과 우선순위를 짜줍니다.</p>
+      <textarea id="planner-exams" rows="3" placeholder="시험/과제 일정 (예: 6/25 자료구조 중간, 6/27 DB 과제)"></textarea>
+      <input type="text" id="planner-timetable" placeholder="시간표 (선택)" />
+      <input type="text" id="planner-hours" placeholder="하루 가용 학습 시간 (예: 3시간)" />
+      <button class="run" data-endpoint="planner">스케줄 만들기</button>
+      <pre class="result" id="planner-result"></pre>
+    </section>
+
+    <!-- 자료 검색 -->
+    <section class="panel" id="search">
+      <h2>맞춤형 자료 검색</h2>
+      <p class="hint">번들된 샘플 강의자료(머신러닝 기초·DB 정규화)에 근거해 답변하고 출처를 표기합니다.</p>
+      <input type="text" id="search-query" placeholder="질문 (예: 과적합을 막는 방법은?)" />
+      <button class="run" data-endpoint="search">검색</button>
+      <pre class="result" id="search-result"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>데모용 — 입력은 저장하지 않으며, 검색은 벡터DB 없이 컨텍스트 주입 방식입니다.</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
