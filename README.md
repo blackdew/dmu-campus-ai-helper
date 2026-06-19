@@ -11,13 +11,13 @@
 
 ## 데모 실행
 
-보고서의 4개 아이디어(강의자료 요약 · 프로젝트 도우미 · 스터디 플래너 · 자료 검색)를 한 화면 4탭으로 묶은 FastAPI 데모입니다. AI 응답은 실제 **Claude API**로 생성합니다.
+보고서의 4개 아이디어(강의자료 요약 · 프로젝트 도우미 · 스터디 플래너 · 자료 검색)를 한 화면 4탭으로 묶은 FastAPI 데모입니다. AI 응답은 실제 **OpenAI API**(기본 `gpt-4o-mini`)로 생성합니다.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-cp .env.example .env        # .env 를 열어 ANTHROPIC_API_KEY 입력
+cp .env.example .env        # .env 를 열어 OPENAI_API_KEY 입력
 uvicorn app.main:app --reload
 ```
 
@@ -30,9 +30,9 @@ uvicorn app.main:app --reload
 | 스터디 플래너 | 학습 스케줄 + 우선순위 | 시험일정·시간표 |
 | 자료 검색 | 샘플 강의자료 기반 Q&A + 출처 | 질문 |
 
-**구성**: `app/main.py`(앱) · `app/llm.py`(Claude 래퍼, 키는 서버 환경변수에서만) · `app/routers/*`(기능별 엔드포인트) · `app/static/*`(4탭 프런트) · `data/samples/*`(검색용 샘플 자료).
+**구성**: `app/main.py`(앱) · `app/llm.py`(LLM 래퍼, 키는 서버 환경변수에서만) · `app/routers/*`(기능별 엔드포인트) · `app/static/*`(4탭 프런트) · `data/samples/*`(검색용 샘플 자료). LLM 제공자를 바꾸려면 `app/llm.py` 한 파일만 교체하면 됩니다.
 
-**테스트**: `pytest` — Claude 호출을 목킹해 토큰 소모 없이 엔드포인트 로직을 검증합니다.
+**테스트**: `pytest` — LLM 호출을 목킹해 토큰 소모 없이 엔드포인트 로직을 검증합니다.
 
 **데모 한계 (의도된 단순화)**: 입력은 저장하지 않음(개인정보 비저장) · 검색은 벡터DB/임베딩 없이 샘플 문서를 컨텍스트로 주입. 실서비스는 학교 LMS 연동 + 임베딩 기반 RAG로 확장 예정.
 

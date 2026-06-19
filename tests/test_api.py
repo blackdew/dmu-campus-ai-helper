@@ -75,7 +75,7 @@ def test_llm_error_becomes_502(monkeypatch):
 
 def test_llm_missing_key_raises(monkeypatch):
     """환경변수가 없으면 llm.complete가 LLMError를 던진다."""
-    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     llm._client.cache_clear()
     with pytest.raises(llm.LLMError):
         llm.complete("s", "u")
